@@ -21,6 +21,11 @@ lazy val root = (project in file("."))
     )
   )
 
+assemblyMergeStrategy in assembly := {
+ case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+ case x => MergeStrategy.first
+}
+
 dockerBaseImage := "openjdk:8"
 
 javaOptions in Universal ++= Seq(
